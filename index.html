@@ -1,65 +1,1314 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Mi Proyecto de Vida | María Camila Ospina Casso</title>
-<link rel="stylesheet" href="css/styles.css">
+
+<style>
+
+/* =========================
+   COLORES
+========================= */
+
+:root{
+    --azul:#0B1F3A;
+    --azul2:#14213D;
+    --dorado:#D4AF37;
+    --blanco:#FFFFFF;
+    --gris:#F3F6FA;
+    --texto:#14213D;
+    --borde:#D9E0E8;
+}
+
+/* =========================
+   GENERAL
+========================= */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    color:var(--texto);
+    background:var(--blanco);
+    line-height:1.7;
+}
+
+h1,h2,h3,blockquote{
+    font-family:Georgia,serif;
+}
+
+.container{
+    width:min(1100px, calc(100% - 40px));
+    margin:auto;
+}
+
+img{
+    max-width:100%;
+    display:block;
+}
+
+/* =========================
+   MENU
+========================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:white;
+    border-bottom:1px solid var(--borde);
+}
+
+nav{
+    min-height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.logo{
+    color:var(--azul);
+    font-family:Georgia,serif;
+    font-size:22px;
+    font-weight:bold;
+    border:2px solid var(--dorado);
+    padding:5px 10px;
+}
+
+nav ul{
+    display:flex;
+    gap:20px;
+    list-style:none;
+}
+
+nav a{
+    text-decoration:none;
+    color:var(--texto);
+    font-size:14px;
+}
+
+nav a:hover{
+    color:#9a7917;
+}
+
+#menu{
+    display:none;
+    background:none;
+    border:0;
+    font-size:25px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:90vh;
+    display:flex;
+    align-items:center;
+    background:white;
+    padding:70px 0;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+}
+
+.tag{
+    color:#9a7917;
+    font-size:12px;
+    letter-spacing:3px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.hero h1{
+    font-size:clamp(50px,7vw,90px);
+    line-height:1;
+    letter-spacing:-3px;
+    margin-bottom:25px;
+}
+
+.hero h1 em{
+    color:#a27c12;
+}
+
+.hero p{
+    font-size:18px;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:25px;
+    padding:13px 22px;
+    background:var(--azul);
+    color:white;
+    text-decoration:none;
+    border-bottom:4px solid var(--dorado);
+}
+
+.hero-photo{
+    height:550px;
+    border:3px solid var(--dorado);
+    overflow:hidden;
+    background:var(--azul);
+}
+
+.hero-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* =========================
+   SECCIONES
+========================= */
+
+.section{
+    padding:100px 0;
+}
+
+.alt{
+    background:var(--gris);
+}
+
+.section h2{
+    font-size:clamp(38px,5vw,65px);
+    line-height:1.1;
+    margin-bottom:45px;
+}
+
+.cols{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:55px;
+    align-items:center;
+}
+
+blockquote{
+    font-size:35px;
+    line-height:1.2;
+    color:#997612;
+    border-left:4px solid var(--dorado);
+    padding-left:25px;
+}
+
+.story-photo{
+    width:100%;
+    height:450px;
+    object-fit:cover;
+    border:3px solid var(--dorado);
+}
+
+.cards{
+    display:grid;
+    gap:18px;
+    margin-top:50px;
+}
+
+.cards.three{
+    grid-template-columns:repeat(3,1fr);
+}
+
+.cards.two{
+    grid-template-columns:repeat(2,1fr);
+}
+
+.card{
+    background:white;
+    border:1px solid var(--borde);
+    border-top:4px solid var(--dorado);
+    padding:30px;
+}
+
+.card h3{
+    font-size:27px;
+    margin:10px 0;
+}
+
+.card i{
+    display:flex;
+    width:45px;
+    height:45px;
+    align-items:center;
+    justify-content:center;
+    background:var(--azul);
+    color:var(--dorado);
+    border-radius:50%;
+    font-style:normal;
+    font-weight:bold;
+    font-size:20px;
+}
+
+.dark{
+    background:var(--azul);
+    color:white;
+}
+
+/* =========================
+   FOTO TOPOGRAFIA
+========================= */
+
+.image-section{
+    background:var(--azul);
+    color:white;
+    padding:0;
+}
+
+.image-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+}
+
+.image-grid img{
+    width:100%;
+    height:550px;
+    object-fit:cover;
+}
+
+.image-text{
+    padding:60px;
+}
+
+.image-text h2{
+    font-size:55px;
+    margin:15px 0;
+}
+
+/* =========================
+   VALORES
+========================= */
+
+.values{
+    background:var(--azul);
+    color:white;
+    padding:80px 0;
+    border-top:4px solid var(--dorado);
+    border-bottom:4px solid var(--dorado);
+}
+
+.values h2{
+    font-size:45px;
+    margin:10px 0;
+}
+
+/* =========================
+   META SMART
+========================= */
+
+.smart{
+    background:var(--azul);
+    color:white;
+    padding:35px;
+    border-left:5px solid var(--dorado);
+    font-family:Georgia,serif;
+    font-size:22px;
+    margin-bottom:45px;
+}
+
+.steps{
+    display:flex;
+    flex-direction:column;
+}
+
+.step{
+    display:grid;
+    grid-template-columns:70px 1fr;
+    gap:20px;
+    padding:25px 0;
+    border-top:1px solid var(--borde);
+}
+
+.number{
+    color:#997612;
+    font-family:Georgia,serif;
+    font-size:27px;
+    font-weight:bold;
+}
+
+.step h3{
+    font-size:27px;
+    margin-bottom:5px;
+}
+
+.step small{
+    color:#66738b;
+    font-weight:bold;
+}
+
+/* =========================
+   FUTURO
+========================= */
+
+.timeline{
+    border-left:2px solid var(--azul);
+    margin-left:10px;
+}
+
+.timeline-item{
+    position:relative;
+    padding:0 0 40px 35px;
+}
+
+.timeline-item::before{
+    content:"";
+    position:absolute;
+    left:-8px;
+    top:8px;
+    width:13px;
+    height:13px;
+    background:var(--dorado);
+    border-radius:50%;
+}
+
+.timeline-item b{
+    color:#997612;
+    font-family:Georgia,serif;
+    font-size:24px;
+}
+
+.timeline-item h3{
+    font-size:27px;
+    margin:5px 0;
+}
+
+.future-photo{
+    width:100%;
+    height:500px;
+    object-fit:cover;
+    border:3px solid var(--dorado);
+}
+
+/* =========================
+   SUEÑO
+========================= */
+
+.dream{
+    background:var(--azul);
+    color:white;
+    padding:100px 0;
+    border-top:4px solid var(--dorado);
+}
+
+.dream h2{
+    font-size:55px;
+    line-height:1.1;
+}
+
+/* =========================
+   FINAL
+========================= */
+
+.final p{
+    font-size:18px;
+    margin-bottom:20px;
+}
+
+.final blockquote{
+    margin-top:40px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background:var(--azul);
+    color:white;
+    padding:30px 0;
+    border-top:3px solid var(--dorado);
+}
+
+.footer-content{
+    display:flex;
+    justify-content:space-between;
+}
+
+/* =========================
+   CELULAR
+========================= */
+
+@media(max-width:800px){
+
+    nav ul{
+        display:none;
+    }
+
+    #menu{
+        display:block;
+    }
+
+    .hero-grid,
+    .cols,
+    .image-grid,
+    .cards.three,
+    .cards.two{
+        grid-template-columns:1fr;
+    }
+
+    .hero{
+        padding:60px 0;
+    }
+
+    .hero h1{
+        font-size:52px;
+    }
+
+    .hero-photo{
+        height:450px;
+    }
+
+    .section{
+        padding:70px 0;
+    }
+
+    .image-text{
+        padding:45px 25px;
+    }
+
+    .image-grid img{
+        height:400px;
+    }
+
+    .dream h2{
+        font-size:42px;
+    }
+
+    .footer-content{
+        flex-direction:column;
+        gap:10px;
+    }
+}
+
+</style>
 </head>
+
 <body>
-<header><nav class="container"><a class="brand" href="#inicio">MCO</a><button id="menu">☰</button><div id="links">
-<a href="#historia">Historia</a><a href="#diagnostico">Diagnóstico</a><a href="#dofa">DOFA</a><a href="#proposito">Propósito</a><a href="#plan">Plan</a><a href="#futuro">Futuro</a>
-</div></nav></header>
+
+<!-- =========================
+     MENU
+========================= -->
+
+<header>
+
+<nav class="container">
+
+<a class="logo" href="#inicio">MCO</a>
+
+<button id="menu">☰</button>
+
+<ul>
+<li><a href="#historia">Historia</a></li>
+<li><a href="#diagnostico">Diagnóstico</a></li>
+<li><a href="#dofa">DOFA</a></li>
+<li><a href="#proposito">Propósito</a></li>
+<li><a href="#plan">Plan</a></li>
+<li><a href="#futuro">Futuro</a></li>
+</ul>
+
+</nav>
+
+</header>
+
+
 <main>
-<section id="inicio" class="hero"><div class="container hero-grid"><div><p class="tag">PROYECTO DE VIDA · 2026</p><h1>Construir el futuro <em>sin rendirme.</em></h1><p>Soy <b>María Camila Ospina Casso</b>, tengo 26 años y estudio Ingeniería Topográfica. Este proyecto representa de dónde vengo, quién soy hoy y hacia dónde quiero dirigir mi vida.</p><a class="btn" href="#historia">Conocer mi historia</a></div><aside><span>01</span><h2>Seguir avanzando, incluso cuando el camino tome más tiempo del esperado.</h2></aside></div></section>
 
-<section id="historia" class="section"><div class="container"><p class="tag">01 · MI HISTORIA</p><h2>Las raíces de quien soy</h2><div class="cols"><blockquote>“Crecí rodeada de mujeres fuertes.”</blockquote><div><p>Nací en Florida, Valle del Cauca, y actualmente vivo en Cali. Mis padres se separaron cuando tenía aproximadamente cinco años. Desde entonces, mi mamá asumió nuestra crianza y manutención con el apoyo de mi abuela.</p><p>Durante mi preadolescencia y adolescencia tuve que volverme más independiente. Debido al trabajo de mi mamá, también asumí responsabilidades con mi hermana, acompañándola con sus tareas y deberes.</p><p>Mi mamá ha sido la persona que más ha influido en mi vida. Su historia es para mí un ejemplo de superación: quizá no tuvimos lujos, pero nunca permitió que nos faltara lo necesario.</p></div></div>
-<div class="cards three"><article><b>⚽ Pasiones</b><p>Fútbol, videojuegos, viajar y los carros deportivos.</p></article><article><b>♥ Crecimiento</b><p>Las experiencias personales me enseñaron a conocerme, expresarme y cuidar mi salud emocional.</p></article><article><b>🎓 Logro</b><p>Estoy cerca de convertirme en la primera mujer ingeniera de mi familia.</p></article></div></div></section>
+<!-- =========================
+     PORTADA
+========================= -->
 
-<section id="diagnostico" class="section alt"><div class="container"><p class="tag">02 · DIAGNÓSTICO PERSONAL</p><h2>Seis dimensiones de mi presente</h2><div class="cards three">
-<article><b>01 · Física</b><p>El trabajo y la universidad generan agotamiento. Quiero mejorar mi alimentación e incorporar actividad física 2 o 3 veces por semana.</p></article>
-<article><b>02 · Cognitiva</b><p>Aprendo mejor desde la práctica. Necesito trabajar en concentración, organización y procrastinación.</p></article>
-<article><b>03 · Social</b><p>Mantengo relaciones estables y se me facilita trabajar en equipo y participar en decisiones.</p></article>
-<article><b>04 · Productiva</b><p>He equilibrado trabajo y universidad. Apoyo económicamente en casa y quiero fortalecer mi relación con el ahorro.</p></article>
-<article><b>05 · Afectiva</b><p>La terapia me ayudó a expresar mejor lo que siento. Tengo una relación estable y quiero aprender a pedir ayuda con mayor facilidad.</p></article>
-<article><b>06 · Espiritual</b><p>Creo en Dios como creador sin identificarme con las iglesias. Las personas que amo dan gran parte del sentido a mi vida.</p></article>
-</div></div></section>
+<section id="inicio" class="hero">
 
-<section id="dofa" class="section"><div class="container"><p class="tag">03 · ANÁLISIS DOFA</p><h2>Conocer mi punto de partida</h2><div class="cards two">
-<article><i>F</i><h3>Fortalezas</h3><p>Perseverancia · Resiliencia · Independencia · Responsabilidad · Trabajo en equipo · Aprendizaje práctico</p></article>
-<article><i>O</i><h3>Oportunidades</h3><p>Graduación próxima · Prácticas · Red de contactos · Modelación 3D · Drones · Posibilidad de ejercer internacionalmente</p></article>
-<article><i>D</i><h3>Debilidades</h3><p>Procrastinación · Organización · Falta de motivación ocasional · Poca actividad física · Concentración · Resolver todo sola</p></article>
-<article><i>A</i><h3>Amenazas</h3><p>Limitaciones económicas · Discriminación · Incertidumbre laboral · Situación del país · Costo de formación · Competencia profesional</p></article>
-</div></div></section>
+<div class="container hero-grid">
 
-<section class="values"><div class="container"><p class="tag">VALORES QUE ME GUÍAN</p><h2>Respeto · Lealtad · Amor · Justicia · Empatía</h2><p>Hija · Hermana · Pareja · Amiga · Estudiante · Trabajadora</p></div></section>
+<div>
 
-<section id="proposito" class="section"><div class="container"><p class="tag">04 · PROPÓSITO</p><h2>Lo que quiero construir</h2><div class="cards two">
-<article><small>MISIÓN</small><h3>Crecer sin olvidar de dónde vengo.</h3><p>Construir una vida basada en perseverancia, crecimiento profesional, amor, justicia y responsabilidad; desarrollarme como ingeniera topográfica y aportar positivamente desde mi trabajo sin olvidar a quienes han sido fundamentales en mi camino.</p></article>
-<article class="dark"><small>VISIÓN</small><h3>Una vida estable, libre y compartida.</h3><p>A mis 36 años me visualizo profesionalmente realizada y económicamente estable, compartiendo un hogar con la mujer que amo, nuestro hijo y nuestras mascotas; creciendo profesionalmente, viajando y apoyando a mi mamá.</p></article>
-</div></div></section>
+<p class="tag">PROYECTO DE VIDA · 2026</p>
 
-<section id="plan" class="section alt"><div class="container"><p class="tag">05 · META SMART</p><h2>Graduarme y comenzar a ejercer</h2><div class="smart">Culminar satisfactoriamente mi formación como <b>Ingeniera Topográfica durante el segundo semestre de 2027</b> e iniciar mi inserción laboral, aprovechando las prácticas, mis conocimientos y mi red de contactos para establecer las bases de mi crecimiento profesional y económico.</div>
+<h1>
+Construir el futuro
+<em>sin rendirme.</em>
+</h1>
+
+<p>
+Soy <b>María Camila Ospina Casso</b>, tengo 26 años y estudio Ingeniería Topográfica.
+Este proyecto representa de dónde vengo, quién soy hoy y hacia dónde quiero dirigir mi vida.
+</p>
+
+<a class="btn" href="#historia">
+Conocer mi historia
+</a>
+
+</div>
+
+
+<div class="hero-photo">
+
+<img src="img/camila-portada.jpg"
+alt="Fotografía de María Camila">
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     HISTORIA
+========================= -->
+
+<section id="historia" class="section">
+
+<div class="container">
+
+<p class="tag">01 · MI HISTORIA</p>
+
+<h2>Las raíces de quien soy</h2>
+
+<div class="cols">
+
+<img class="story-photo"
+src="img/familia.jpg"
+alt="Fotografía familiar">
+
+<div>
+
+<blockquote>
+“Crecí rodeada de mujeres fuertes.”
+</blockquote>
+
+<p>
+Nací en Florida, Valle del Cauca, y actualmente vivo en Cali.
+Mis padres se separaron cuando tenía aproximadamente cinco años.
+Desde entonces, mi mamá asumió nuestra crianza y manutención con el apoyo de mi abuela.
+</p>
+
+<p>
+Durante mi preadolescencia y adolescencia tuve que volverme más independiente.
+Debido al trabajo de mi mamá, también asumí responsabilidades con mi hermana,
+acompañándola con sus tareas y deberes.
+</p>
+
+<p>
+Mi mamá ha sido la persona que más ha influido en mi vida.
+Su historia es para mí un ejemplo de superación: quizá no tuvimos lujos,
+pero nunca permitió que nos faltara lo necesario.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="cards three">
+
+<div class="card">
+<h3>⚽ Pasiones</h3>
+<p>
+Fútbol, videojuegos, viajar y los carros deportivos.
+</p>
+</div>
+
+<div class="card">
+<h3>♥ Crecimiento</h3>
+<p>
+Las experiencias personales me enseñaron a conocerme,
+expresarme y cuidar mi salud emocional.
+</p>
+</div>
+
+<div class="card">
+<h3>🎓 Logro</h3>
+<p>
+Estoy cerca de convertirme en la primera mujer ingeniera de mi familia.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     DIAGNÓSTICO
+========================= -->
+
+<section id="diagnostico" class="section alt">
+
+<div class="container">
+
+<p class="tag">02 · DIAGNÓSTICO PERSONAL</p>
+
+<h2>Seis dimensiones de mi presente</h2>
+
+<div class="cards three">
+
+<div class="card">
+<h3>01 · Física</h3>
+<p>
+El trabajo y la universidad generan agotamiento.
+Quiero mejorar mi alimentación e incorporar actividad física
+2 o 3 veces por semana.
+</p>
+</div>
+
+<div class="card">
+<h3>02 · Cognitiva</h3>
+<p>
+Aprendo mejor desde la práctica.
+Necesito trabajar en concentración, organización y procrastinación.
+</p>
+</div>
+
+<div class="card">
+<h3>03 · Social</h3>
+<p>
+Mantengo relaciones estables y se me facilita trabajar
+en equipo y participar en decisiones.
+</p>
+</div>
+
+<div class="card">
+<h3>04 · Productiva</h3>
+<p>
+He equilibrado trabajo y universidad.
+Apoyo económicamente en casa y quiero fortalecer mi relación con el ahorro.
+</p>
+</div>
+
+<div class="card">
+<h3>05 · Afectiva</h3>
+<p>
+La terapia me ayudó a expresar mejor lo que siento.
+Tengo una relación estable y quiero aprender a pedir ayuda
+con mayor facilidad.
+</p>
+</div>
+
+<div class="card">
+<h3>06 · Espiritual</h3>
+<p>
+Creo en Dios como creador sin identificarme con las iglesias.
+Las personas que amo dan gran parte del sentido a mi vida.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     TOPOGRAFÍA
+========================= -->
+
+<section class="image-section">
+
+<div class="image-grid">
+
+<img
+src="img/topografia.jpg"
+alt="Ingeniería Topográfica">
+
+<div class="image-text">
+
+<p class="tag">
+MI CAMINO PROFESIONAL
+</p>
+
+<h2>
+Ingeniería Topográfica
+</h2>
+
+<p>
+Elegí esta profesión por pasión, porque no me veía
+estando todo el día en una oficina y porque me permite
+tener contacto con diferentes lugares, viajar y aportar
+a la sociedad.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     DOFA
+========================= -->
+
+<section id="dofa" class="section">
+
+<div class="container">
+
+<p class="tag">
+03 · ANÁLISIS DOFA
+</p>
+
+<h2>
+Conocer mi punto de partida
+</h2>
+
+<div class="cards two">
+
+<div class="card">
+<h3>F · Fortalezas</h3>
+
+<p>
+Perseverancia · Resiliencia · Independencia · Responsabilidad ·
+Trabajo en equipo · Aprendizaje práctico
+</p>
+
+</div>
+
+<div class="card">
+<h3>O · Oportunidades</h3>
+
+<p>
+Graduación próxima · Prácticas · Red de contactos ·
+Modelación 3D · Drones · Posibilidad de ejercer internacionalmente
+</p>
+
+</div>
+
+<div class="card">
+<h3>D · Debilidades</h3>
+
+<p>
+Procrastinación · Organización · Falta de motivación ocasional ·
+Poca actividad física · Concentración · Resolver todo sola
+</p>
+
+</div>
+
+<div class="card">
+<h3>A · Amenazas</h3>
+
+<p>
+Limitaciones económicas · Discriminación · Incertidumbre laboral ·
+Situación del país · Costo de formación · Competencia profesional
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     VALORES
+========================= -->
+
+<section class="values">
+
+<div class="container">
+
+<p class="tag">
+VALORES QUE ME GUÍAN
+</p>
+
+<h2>
+Respeto · Lealtad · Amor · Justicia · Empatía
+</h2>
+
+<p>
+Hija · Hermana · Pareja · Amiga · Estudiante · Trabajadora
+</p>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     PROPÓSITO
+========================= -->
+
+<section id="proposito" class="section">
+
+<div class="container">
+
+<p class="tag">
+04 · PROPÓSITO
+</p>
+
+<h2>
+Lo que quiero construir
+</h2>
+
+<div class="cards two">
+
+<div class="card">
+
+<small>MISIÓN</small>
+
+<h3>
+Crecer sin olvidar de dónde vengo.
+</h3>
+
+<p>
+Construir una vida basada en perseverancia,
+crecimiento profesional, amor, justicia y responsabilidad;
+desarrollarme como ingeniera topográfica y aportar
+positivamente desde mi trabajo sin olvidar a quienes
+han sido fundamentales en mi camino.
+</p>
+
+</div>
+
+<div class="card dark">
+
+<small>VISIÓN</small>
+
+<h3>
+Una vida estable, libre y compartida.
+</h3>
+
+<p>
+A mis 36 años me visualizo profesionalmente realizada
+y económicamente estable, compartiendo un hogar con
+la mujer que amo, nuestro hijo y nuestras mascotas;
+creciendo profesionalmente, viajando y apoyando a mi mamá.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     PLAN
+========================= -->
+
+<section id="plan" class="section alt">
+
+<div class="container">
+
+<p class="tag">
+05 · META SMART
+</p>
+
+<h2>
+Graduarme y comenzar a ejercer
+</h2>
+
+<div class="smart">
+
+Culminar satisfactoriamente mi formación como
+<b>Ingeniera Topográfica durante el segundo semestre de 2027</b>
+e iniciar mi inserción laboral, aprovechando las prácticas,
+mis conocimientos y mi red de contactos para establecer
+las bases de mi crecimiento profesional y económico.
+
+</div>
+
+
 <div class="steps">
-<div><b>01</b><h3>Culminar requisitos académicos</h3><p>Finalizar materias, Trabajo de Grado II y requisitos de graduación.</p><small>Indicador: 100% de requisitos aprobados · 2027-II</small></div>
-<div><b>02</b><h3>Realizar prácticas</h3><p>Buscar opciones, activar contactos, actualizar hoja de vida y adquirir experiencia.</p><small>Indicador: práctica conseguida y finalizada · 2027-I</small></div>
-<div><b>03</b><h3>Primer empleo profesional</h3><p>Enviar hojas de vida, utilizar contactos y buscar oportunidades relacionadas con Ingeniería Topográfica.</p><small>Indicador: contrato laboral · 2027–2028</small></div>
-<div><b>04</b><h3>Continuar mi formación</h3><p>Modelación 3D, software, inglés y posteriormente formación en drones.</p><small>Indicador: cursos y certificaciones · 2028–2030</small></div>
-<div><b>05</b><h3>Estabilidad económica</h3><p>Ahorrar entre 5% y 10% cuando sea posible, apoyar a mi mamá y construir proyectos de hogar.</p><small>Indicador: ahorro mensual y avance de metas</small></div>
-<div><b>06</b><h3>Bienestar</h3><p>Mejorar alimentación, descanso y actividad física progresivamente.</p><small>Indicador: actividad física 2–3 veces por semana</small></div>
-</div></div></section>
 
-<section id="futuro" class="section"><div class="container"><p class="tag">06 · MI RUTA</p><h2>Del presente al futuro</h2><div class="timeline">
-<div><b>2027</b><h3>Graduación</h3><p>Prácticas, materias, trabajo de grado y título profesional.</p></div>
-<div><b>2027–28</b><h3>Inicio profesional</h3><p>Primer empleo, experiencia laboral e inicio del ahorro.</p></div>
-<div><b>2028–30</b><h3>Especialización del perfil</h3><p>Modelación 3D, drones, inglés y posible aprendizaje de portugués.</p></div>
-<div><b>2030–32</b><h3>Consolidación</h3><p>Crecimiento profesional, estabilidad económica, vehículo y avance hacia vivienda propia.</p></div>
-<div><b>2032+</b><h3>Mi hogar y nuevos horizontes</h3><p>Familia, maternidad, viajes y posibilidad de una experiencia laboral internacional.</p></div>
-</div></div></section>
+<div class="step">
 
-<section class="dream"><div class="container cols"><div><p class="tag">MI VISIÓN A LOS 36</p><h2>Tranquilidad también es una forma de éxito.</h2></div><div><p>Me imagino despertando al lado de la mujer que amo, con nuestro hijo y nuestras mascotas. Quiero ejercer un cargo importante, tener estabilidad económica, viajar, practicar fútbol, hacer ejercicio y continuar apoyando a mi mamá.</p><p>Lisboa representa uno de los lugares donde podría imaginar una etapa de mi vida si existe una oportunidad laboral segura. Mi éxito no depende de vivir fuera de Colombia, sino de construir una vida realizada y tranquila.</p></div></div></section>
+<div class="number">01</div>
 
-<section class="section final"><div class="container"><p class="tag">07 · REFLEXIÓN FINAL</p><h2>Ser la primera ingeniera de mi familia</h2><p>Provengo de una familia con raíces en el campo y una historia marcada por mujeres que han salido adelante. Por eso, graduarme de una ingeniería tiene para mí un peso especial: representa el esfuerzo de mi mamá, el apoyo de mi familia y todas las decisiones que he tomado para continuar.</p><p>Mi recorrido universitario no ha sido perfecto. Me atrasé y reconozco mis dificultades con la procrastinación, la organización y la disciplina. Pero aprendí que el tiempo que tarde en alcanzar una meta no determina su importancia.</p><blockquote>“No busco construir una vida perfecta, sino una vida en la que todo el esfuerzo tenga sentido y en la que, frente a las dificultades, continúe eligiendo no rendirme.”</blockquote></div></section>
+<div>
+
+<h3>
+Culminar requisitos académicos
+</h3>
+
+<p>
+Finalizar materias, Trabajo de Grado II y requisitos de graduación.
+</p>
+
+<small>
+Indicador: 100% de requisitos aprobados · 2027-II
+</small>
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<div class="number">02</div>
+
+<div>
+
+<h3>
+Realizar prácticas
+</h3>
+
+<p>
+Buscar opciones, activar contactos, actualizar hoja de vida
+y adquirir experiencia.
+</p>
+
+<small>
+Indicador: práctica conseguida y finalizada · 2027-I
+</small>
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<div class="number">03</div>
+
+<div>
+
+<h3>
+Primer empleo profesional
+</h3>
+
+<p>
+Enviar hojas de vida, utilizar contactos y buscar oportunidades
+relacionadas con Ingeniería Topográfica.
+</p>
+
+<small>
+Indicador: contrato laboral · 2027–2028
+</small>
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<div class="number">04</div>
+
+<div>
+
+<h3>
+Continuar mi formación
+</h3>
+
+<p>
+Modelación 3D, software, inglés y posteriormente formación en drones.
+</p>
+
+<small>
+Indicador: cursos y certificaciones · 2028–2030
+</small>
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<div class="number">05</div>
+
+<div>
+
+<h3>
+Estabilidad económica
+</h3>
+
+<p>
+Ahorrar entre 5% y 10% cuando sea posible,
+apoyar a mi mamá y construir proyectos de hogar.
+</p>
+
+<small>
+Indicador: ahorro mensual y avance de metas
+</small>
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<div class="number">06</div>
+
+<div>
+
+<h3>
+Bienestar
+</h3>
+
+<p>
+Mejorar alimentación, descanso y actividad física progresivamente.
+</p>
+
+<small>
+Indicador: actividad física 2–3 veces por semana
+</small>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     FUTURO
+========================= -->
+
+<section id="futuro" class="section">
+
+<div class="container">
+
+<p class="tag">
+06 · MI RUTA
+</p>
+
+<h2>
+Del presente al futuro
+</h2>
+
+<div class="cols">
+
+<div class="timeline">
+
+<div class="timeline-item">
+
+<b>2027</b>
+
+<h3>Graduación</h3>
+
+<p>
+Prácticas, materias, trabajo de grado y título profesional.
+</p>
+
+</div>
+
+
+<div class="timeline-item">
+
+<b>2027–28</b>
+
+<h3>Inicio profesional</h3>
+
+<p>
+Primer empleo, experiencia laboral e inicio del ahorro.
+</p>
+
+</div>
+
+
+<div class="timeline-item">
+
+<b>2028–30</b>
+
+<h3>Especialización del perfil</h3>
+
+<p>
+Modelación 3D, drones, inglés y posible aprendizaje de portugués.
+</p>
+
+</div>
+
+
+<div class="timeline-item">
+
+<b>2030–32</b>
+
+<h3>Consolidación</h3>
+
+<p>
+Crecimiento profesional, estabilidad económica,
+vehículo y avance hacia vivienda propia.
+</p>
+
+</div>
+
+
+<div class="timeline-item">
+
+<b>2032+</b>
+
+<h3>Mi hogar y nuevos horizontes</h3>
+
+<p>
+Familia, maternidad, viajes y posibilidad de una experiencia
+laboral internacional.
+</p>
+
+</div>
+
+</div>
+
+
+<img class="future-photo"
+src="img/futuro.jpg"
+alt="Representación de mi futuro">
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     VISIÓN
+========================= -->
+
+<section class="dream">
+
+<div class="container cols">
+
+<div>
+
+<p class="tag">
+MI VISIÓN A LOS 36
+</p>
+
+<h2>
+Tranquilidad también es una forma de éxito.
+</h2>
+
+</div>
+
+<div>
+
+<p>
+Me imagino despertando al lado de la mujer que amo,
+con nuestro hijo y nuestras mascotas. Quiero ejercer
+un cargo importante, tener estabilidad económica,
+viajar, practicar fútbol, hacer ejercicio y continuar
+apoyando a mi mamá.
+</p>
+
+<p>
+Lisboa representa uno de los lugares donde podría
+imaginar una etapa de mi vida si existe una oportunidad
+laboral segura. Mi éxito no depende de vivir fuera de
+Colombia, sino de construir una vida realizada y tranquila.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     REFLEXIÓN FINAL
+========================= -->
+
+<section class="section final">
+
+<div class="container">
+
+<p class="tag">
+07 · REFLEXIÓN FINAL
+</p>
+
+<h2>
+Ser la primera ingeniera de mi familia
+</h2>
+
+<p>
+Provengo de una familia con raíces en el campo y una historia
+marcada por mujeres que han salido adelante. Por eso,
+graduarme de una ingeniería tiene para mí un peso especial:
+representa el esfuerzo de mi mamá, el apoyo de mi familia
+y todas las decisiones que he tomado para continuar.
+</p>
+
+<p>
+Mi recorrido universitario no ha sido perfecto. Me atrasé y
+reconozco mis dificultades con la procrastinación,
+la organización y la disciplina. Pero aprendí que el tiempo
+que tarde en alcanzar una meta no determina su importancia.
+</p>
+
+<blockquote>
+“No busco construir una vida perfecta, sino una vida en la que
+todo el esfuerzo tenga sentido y en la que, frente a las
+dificultades, continúe eligiendo no rendirme.”
+</blockquote>
+
+</div>
+
+</section>
+
 </main>
-<footer><div class="container"><b>María Camila Ospina Casso</b><span>Proyecto de Vida · Administración de Proyectos</span></div></footer>
-<script src="js/script.js"></script>
-</body></html>
+
+
+<footer>
+
+<div class="container footer-content">
+
+<b>
+María Camila Ospina Casso
+</b>
+
+<span>
+Proyecto de Vida · Administración de Proyectos · 2026
+</span>
+
+</div>
+
+</footer>
+
+
+<script>
+
+const menu = document.getElementById("menu");
+
+const nav = document.querySelector("nav ul");
+
+menu.addEventListener("click", function(){
+
+    if(nav.style.display === "flex"){
+        nav.style.display = "none";
+    }else{
+        nav.style.display = "flex";
+        nav.style.flexDirection = "column";
+        nav.style.position = "absolute";
+        nav.style.top = "70px";
+        nav.style.right = "20px";
+        nav.style.background = "white";
+        nav.style.padding = "20px";
+        nav.style.border = "1px solid #ddd";
+    }
+
+});
+
+</script>
+
+</body>
+</html>
